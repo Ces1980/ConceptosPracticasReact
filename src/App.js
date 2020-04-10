@@ -10,20 +10,22 @@ constructor(){
   },1000)
 }
   render(){
-  return <span>{this.state.contador}</span>
+  return <ContadorNumero numero={this.state.contador}></ContadorNumero>
   }
 }
 
-/**Un componente se debe de tratar como información inmutable
- * Se puede codificar mediante la función setState
- * y es asincrono
- */
+class ContadorNumero extends Component{
+  render(){
+    console.log('ContadorNumero render()')
+  return <span>{this.props.numero}</span>
+  }
+}
 
 class App extends Component{
   render(){
     return(
       <div className="App">
-          <p>Primer componente con state</p>
+          <p>Propagando el state de nuestros componentes</p>
           <Contador></Contador>
       </div>
     )
