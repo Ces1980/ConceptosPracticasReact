@@ -13,25 +13,40 @@ class Hello extends Component{
   return <h2>{this.props.title}</h2>
   }
 }
-
+//Destructuración
 class Text extends Component{
    render(){
-     const textoSegunBool = this.props.isActivated ? 'Es cierto!' : 'Falso'
-     const mappedNumbers = this.props.arrayOfNumbers.map(n => n * 2)
+     const {
+       arrayOfNumbers, 
+       isActivated,
+       multiply,
+       number,
+       objectWithInfo, 
+       text, 
+       title
+      } = this.props
+
+     const textoSegunBool = isActivated ? 'Es cierto!' : 'Falso'
+     const mappedNumbers = arrayOfNumbers.map(multiply)
+
+     /**Uso de las props */
    return (
      <div>
-          <p>{this.props.objectWithInfo.key}</p>
-          <p>{this.props.objectWithInfo.key2}</p>
-          <p>{this.props.text}</p>
-          <p>{this.props.number}</p>
+          {title}
+          <p>{objectWithInfo.key}</p>
+          <p>{objectWithInfo.key2}</p>
+          <p>{text}</p>
+          <p>{number}</p>
           <p>{textoSegunBool}</p>
-          <p>{this.props.arrayOfNumbers.join(', ')}</p>
-          <p>Arrelo manipulado antes de usarlo: {mappedNumbers.join(', ')}</p>
+          <p>{arrayOfNumbers.join(', ')}</p>
+          <p>Arreglo manipulado antes de usarlo: {mappedNumbers.join(', ')}</p>
      </div>
   )
    }
   }
 
+
+  /**Declaración de las props con su contenido */
 function App() {
   return (
     <div className="App">
@@ -42,8 +57,11 @@ function App() {
          arrayOfNumbers={[2,5,8]}
          isActivated
          objectWithInfo={{key: 'value', key2:'value2', key3:'value3'}}
+         multiply={(number) => number * 4}
          number={2} 
          text='Texto en String' 
+         //Uso de las prop ya con un elemento html desde su declaración
+         title={<h1>Este es el titulo</h1>}
          ></Text>
       </header>{" "}
     </div>
