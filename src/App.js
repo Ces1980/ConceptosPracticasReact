@@ -2,12 +2,13 @@ import React, {Component} from "react";
 
 
 class Contador extends Component{
-  constructor(){
-    super()
-    this.state = {contador: 1}
-  }
+ state = {contador: 0}
   render(){
-  return <span>{this.state.contador}</span>
+  return(
+      <div>
+        <h2>El contador esta a {this.state.contador}</h2>
+      </div>
+  ) 
   }
 }
 
