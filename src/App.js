@@ -1,7 +1,17 @@
 import React, {Component} from "react";
 import cars from './data/cars.json';
 
-
+class CarItem extends Component {
+  render(){
+    const { car } = this.props
+    return(
+      <li> 
+        <p><strong>Nombre: </strong>{car.name}</p>
+        <p><strong>Compañia: </strong>{car.company}</p>
+      </li>
+    )
+  }
+}
 class App extends Component {
 
   render(){
@@ -12,12 +22,7 @@ class App extends Component {
         <ul>
           {
             cars.map( car=> {
-              return(
-                <li key={car.id}> 
-                  <p><strong>Nombre: </strong>{car.name}</p>
-                  <p><strong>Compañia: </strong>{car.company}</p>
-                </li>
-              )
+              return <CarItem key={car.id} car={car} />
             })
           }
         </ul>
