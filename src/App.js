@@ -1,18 +1,28 @@
 import React, {Component} from "react";
+import cars from './data/cars.json';
+
 
 class App extends Component {
 
   render(){
-    const numbers = [1,1,3,4,5];
 
     return(
       <div className= "App">
-        <h4>Trabajando con listas</h4>
-      {numbers.map((number, index) => {
-        return <p key={index}>Soy el numero{number}</p>
-      })}
+        <h4>Trabajando con listas de objetos</h4>
+        <ul>
+          {
+            cars.map( car=> {
+              return(
+                <li key={car.id}> 
+                  <p><strong>Nombre: </strong>{car.name}</p>
+                  <p><strong>Compañia: </strong>{car.company}</p>
+                </li>
+              )
+            })
+          }
+        </ul>
       </div>
-    )
+    );
   }
 }
 
