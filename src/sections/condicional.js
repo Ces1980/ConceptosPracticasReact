@@ -32,10 +32,11 @@ export default class CondicionalSection extends Component{
         this.state= {mostraA: true}
     }
     render(){
+        const condicionalComponent =  useCondicionalRendering(this.state.mostraA)/* this.state.mostraA ? <ComponenteA/> : <ComponenteB/> */;
         return(
             <div>
                 <h4>Condicional Rendering</h4>
-                {useCondicionalRendering(this.state.mostrarA)}
+                {condicionalComponent}
             </div>
         )
     }
