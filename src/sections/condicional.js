@@ -6,15 +6,18 @@ React actualice la interfaz de usuario para emparejarlos. */
 import React, {Component} from 'react';
 
 
-class ComponenteA extends Component{
+class LoginButton extends Component{
     render(){
-        return <p>Componente A</p>
+        return <button>Iniciar Sesión</button>
     }
 }
 
-class ComponenteB extends Component{
+class LogoutButton extends Component{
     render(){
-        return <p>Componente B</p>
+        return <div>
+            <p>Bienvenido ,usuario</p>
+            <button>Cerrar Sesión</button>
+        </div>
     }
 }
 
@@ -22,13 +25,13 @@ class ComponenteB extends Component{
 export default class CondicionalSection extends Component{
     constructor(){
         super()
-        this.state= {mostraA: false}
+        this.state= {isUserLogged: false}
     }
     render(){
         return(
             <div>
                 <h4>Condicional Rendering</h4>
-                {this.state.mostraA ? <ComponenteA/> : <ComponenteB/>}
+                {this.state.isUserLogged ? <LogoutButton/> : <LoginButton/>}
             </div>
         )
     }
