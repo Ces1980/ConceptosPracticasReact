@@ -1,16 +1,24 @@
 import React, {Component} from 'react'
 
 export default class Forms extends Component {
+    /* Guardando en el estado inical todos los datos del formulario */
+    constructor(){
+        super()
+        this.state= {
+            inputName:'',
+            inputTwitter:'@',
+            inputTerms: true
+        }
+    }
     handleSubmit = (e) =>{
         e.preventDefault();
-        const name = this.inputName.value
-        const email = document.getElementById('twitter').value
-        console.log({name, email})
+        console.log(this.state)
     }
 
-    handleChange(e){
+    handleChange =(e) =>{
         console.log('handleChange')
         console.log(e.target.checked)
+        this.setState({inputTerms: e.target.checked})
     }
 
     render(){
@@ -23,8 +31,10 @@ export default class Forms extends Component {
                         <input
                         id='name'
                         name='userName'
+                        onChange={e => this.setState({inputName: e.target.value})}
                         placeholder='Introduce el nombre'
                         ref={inputElement => this.inputName = inputElement}
+                        value={this.state.inputName}
                         />
                     </p>
                     <p>
@@ -32,12 +42,17 @@ export default class Forms extends Component {
                         <input
                         id='twitter'
                         name='twitterAccount'
+                        onChange={e => this.setState({inputTwitter: e.target.value})}
                         placeholder='Introduce tu twitter'
+                        value={this.state.inputTwitter}
                         />
                     </p>
                     <p>
                         <label>
-                            <input onChange={this.handleChange} type="checkbox"/>
+                            <input
+                            checked ={this.state.inputTerms}
+                            onChange={this.handleChange} 
+                            type="checkbox"/>
                             Accpted terms
                         </label>
                     </p>
