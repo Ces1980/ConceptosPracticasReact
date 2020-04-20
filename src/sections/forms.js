@@ -1,18 +1,23 @@
 import React, {Component} from 'react'
 
 export default class Forms extends Component {
-    handleClick = (e) =>{
+    handleSubmit = (e) =>{
         e.preventDefault();
         const name = this.inputName.value
         const email = document.getElementById('twitter').value
         console.log({name, email})
     }
 
+    handleChange(e){
+        console.log('handleChange')
+        console.log(e.target.checked)
+    }
+
     render(){
         return(
             <div>
                 <h4>Formularios</h4>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <p>
                         <label htmlFor='name'>Nombre:</label>
                         <input
@@ -30,7 +35,13 @@ export default class Forms extends Component {
                         placeholder='Introduce tu twitter'
                         />
                     </p>
-                    <button onClick={this.handleClick}>Enviar</button>
+                    <p>
+                        <label>
+                            <input onChange={this.handleChange} type="checkbox"/>
+                            Accpted terms
+                        </label>
+                    </p>
+                    <button>Enviar</button>
                 </form>
             </div>
         )
