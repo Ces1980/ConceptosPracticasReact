@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
 
 class Box extends Component {
   render() {
@@ -11,14 +12,26 @@ class Box extends Component {
 }
 
 class Article extends Component {
+  static propTypes = {
+    author: PropTypes.string
+  }
+  constructor(props) {
+    super(props)
+
+    if (typeof props.author === 'undefined') {
+      console.warn('author prop is required')
+      throw new Error('author prop is requered')
+    }
+  }
   render() {
+    const { author, children, date, title } = this.props;
     return (
       <section>
-        <h2>{this.props.title}</h2>
-        <p><em>Escrito por {this.props.author}</em></p>
-        <Box>{this.props.date}</Box>
+        <h2>{title}</h2>
+        {author && <p><em>Escrito por {author}</em></p>}
+        <Box>{date}</Box>
         <article>
-          {this.props.children}
+          {children}
         </article>
       </section>
     )
@@ -33,7 +46,7 @@ class App extends Component {
       <div className="App">
         <h3>Children props</h3>
         <Article
-          author='César'
+          author={true}
           date={new Date().toLocaleDateString()}
           title='Articulo sobre la prop children'
         >
@@ -42,25 +55,6 @@ class App extends Component {
           <strong>Y mantiene las etiquetas que se hayan añadido dentro</strong>
         </Article>
 
-        <Article
-          author='César'
-          date={new Date().toLocaleDateString()}
-          title='Articulo 2'
-        >
-          <p>El contenido lo envolvemos dentro del componente Article
-              será enviado al componente this.props.children.</p>
-          <strong>Y mantiene las etiquetas que se hayan añadido dentro</strong>
-        </Article>
-
-        <Article
-          author='César'
-          date={new Date().toLocaleDateString()}
-          title='Otro Articulo'
-        >
-          <p>El contenido lo envolvemos dentro del componente Article
-              será enviado al componente this.props.children.</p>
-          <strong>Y mantiene las etiquetas que se hayan añadido dentro</strong>
-        </Article>
       </div>
     );
   }
