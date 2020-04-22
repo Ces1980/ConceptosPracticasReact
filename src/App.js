@@ -15,14 +15,7 @@ class Article extends Component {
   static propTypes = {
     author: PropTypes.string
   }
-  constructor(props) {
-    super(props)
 
-    if (typeof props.author === 'undefined') {
-      console.warn('author prop is required')
-      throw new Error('author prop is requered')
-    }
-  }
   render() {
     const { author, children, date, title } = this.props;
     return (
