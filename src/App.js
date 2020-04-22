@@ -13,7 +13,7 @@ class Box extends Component {
 
 class Article extends Component {
   static propTypes = {
-    author: PropTypes.string
+    author: PropTypes.string.isRequired
   }
 
   render() {
@@ -39,7 +39,7 @@ class App extends Component {
       <div className="App">
         <h3>Children props</h3>
         <Article
-          author={true}
+          /*  author={true} */
           date={new Date().toLocaleDateString()}
           title='Articulo sobre la prop children'
         >
