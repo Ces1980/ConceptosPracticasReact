@@ -1,53 +1,37 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types'
 
-class Box extends Component {
-  render() {
-    return (
-      <div style={{ border: '1px solid #09f', margin: 5, padding: 5 }}>
-        {this.props.children}
-      </div>
-    )
-  }
-}
 
-class Article extends Component {
-  static propTypes = {
-    author: PropTypes.string.isRequired
-  }
-
-  render() {
-    const { author, children, date, title } = this.props;
-    return (
-      <section>
-        <h2>{title}</h2>
-        {author && <p><em>Escrito por {author}</em></p>}
-        <Box>{date}</Box>
-        <article>
-          {children}
-        </article>
-      </section>
-    )
-  }
-}
 
 
 class App extends Component {
 
+  /* Constructor por defecto
+  constructor(...args) {
+    super(...args)
+  } */
+
+  constructor(props) {
+    console.log('Constructor...')
+    super(props)//Este método llama al constructor de Component
+    //Inicializamos el state de nuestro componente
+    this.state = { mensajeInicial: 'mensaje inicial: ' }
+    // bineamos para enlazar el contexto correcto al método
+    this.handlerClick = this.handlerClick.bind(this)
+  }
+
+  /* Con arrow funtion tambien se puede enlazar al contexto correcto */
+  handlerClick() {
+    this.setState({ mensajeInicial: 'mensaje cambiado:  ' })
+  }
   render() {
+    console.log('render...')
     return (
       <div className="App">
-        <h3>Children props</h3>
-        <Article
-          /*  author={true} */
-          date={new Date().toLocaleDateString()}
-          title='Articulo sobre la prop children'
-        >
-          <p>El contenido lo envolvemos dentro del componente Article
-              será enviado al componente this.props.children.</p>
-          <strong>Y mantiene las etiquetas que se hayan añadido dentro</strong>
-        </Article>
-
+        <h3>Ciclo de montaje: constructor</h3>
+        {this.state.mensajeInicial}
+        <button onClick={this.handlerClick}>
+          Cambiar mensaje
+        </button>
       </div>
     );
   }
