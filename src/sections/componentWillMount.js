@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ComponentWillMount extends Component {
+class Render extends Component {
     constructor(props) {
         console.log('constructor')
         super(props)
@@ -9,18 +9,14 @@ class ComponentWillMount extends Component {
 
     componentWillMount() {
         console.log('componentWillMount')
-        this.setState({ mensaje: 'otro mensaje' })
+
     }
 
     render() {
         console.log('render')
-        return (
-            <div>
-                <h4>Ciclo de montaje: componentWillMount</h4>
-                <p>{this.state.mensaje}</p>
-            </div>
-        )
+        return 'Soy el método Render'
+
     }
 }
 
-export default ComponentWillMount
+export default Render
